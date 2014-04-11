@@ -1,3 +1,7 @@
+This Fork adds Bigquery Stream option to queries.
+
+Original Readme below:
+
 # Google Analytics superProxy
 
 The Google Analytics superProxy allows you to publicly share your Google
