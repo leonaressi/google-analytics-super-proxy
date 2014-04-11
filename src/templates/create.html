@@ -51,6 +51,25 @@
           Google Analytics Query Explorer</a> to build a valid Query URI.
       </p>
 
+      <!--WIP-->
+      <label class="query_label" for="name">BigQuery Project Id</label>
+      <input type="text" id="bigquery_project_id" name="bigquery_project_id"
+             value="{{ bigquery_project_id }}"
+             placeholder=""/> &nbsp;
+      <span class="validate-text" id="bigquery_project_id_msg"></span><br/>
+      
+      <label class="query_label" for="name">BigQuery Dataset</label>
+      <input type="text" id="bigquery_dataset" name="bigquery_dataset"
+             value="{{ bigquery_dataset }}"
+             placeholder=""/> &nbsp;
+      <span class="validate-text" id="bigquery_dataset_msg"></span><br/>
+      
+      <label class="query_label" for="name">BigQuery Table</label>
+      <input type="text" id="bigquery_table" name="bigquery_table"
+             value="{{ bigquery_table }}"
+             placeholder=""/> &nbsp;
+      <span class="validate-text" id="bigquery_table_msg"></span><br/>
+
       <input type="submit" class="button button-red create-button"
              name="create_query" id="create_query" value="Save Query"/>
       <input type="submit" class="button button-red save-run-button"

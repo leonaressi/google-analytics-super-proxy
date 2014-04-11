@@ -203,3 +203,24 @@ def IsErrorLimitReached(api_query):
   """Returns a boolean to indicate if the API Query reached the error limit."""
   return (api_query.api_query_errors.count(
       limit=co.QUERY_ERROR_LIMIT) == co.QUERY_ERROR_LIMIT)
+
+def GetLastStreamTimedelta(api_query, from_time=None):
+  """Returns how long since the API Query was streamed.
+
+  Args:
+    api_query: The API Query from which to retrieve the modified timedelta.
+    from_time: A DateTime object representing the start time to calculate the
+               timedelta from.
+
+  Returns:
+    A string that describes how long since the API Query has been streamd in
+    the form of "HH hours, MM minutes, ss seconds ago" or None if the API Query
+    has never been streamed.
+  """
+  if not from_time:
+    from_time = datetime.utcnow()
+
+  if api_query:
+    time_delta = from_time - api_query.last_streamed
+    return FormatTimedelta(time_delta)
+  return None

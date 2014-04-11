@@ -73,10 +73,15 @@ class ApiQuery(db.Model):
   name = db.StringProperty(required=True)
   request = JsonQueryProperty(required=True)
   refresh_interval = db.IntegerProperty(required=True, default=3600)
+  bigquery_project_id = db.StringProperty(required=False)
+  bigquery_dataset = db.StringProperty(required=False)
+  bigquery_table = db.StringProperty(required=False)
   in_queue = db.BooleanProperty(required=True, default=False)
   is_active = db.BooleanProperty(required=True, default=False)
   is_scheduled = db.BooleanProperty(required=True, default=False)
   modified = db.DateTimeProperty()
+  last_streamed = db.DateTimeProperty()
+  last_stream_status = db.StringProperty(required=False)
 
   @property
   def is_abandoned(self):
@@ -108,6 +113,10 @@ class ApiQuery(db.Model):
     """Reuturns the request count for the API Query."""
     return models_helper.GetApiQueryRequestCount(str(self.key()))
 
+  @property
+  def last_stream_timedelta(self):
+    """Returns how long since the API Query response was last streamed."""
+    return models_helper.GetLastStreamTimedelta(self, from_time)
 
 class ApiQueryResponse(db.Model):
   """Models an API Response."""
@@ -116,7 +125,6 @@ class ApiQueryResponse(db.Model):
                                    collection_name='api_query_responses')
   content = JsonQueryProperty(required=True)
   modified = db.DateTimeProperty(required=True)
-
 
 class ApiErrorResponse(db.Model):
   """Models an API Query Error Response."""

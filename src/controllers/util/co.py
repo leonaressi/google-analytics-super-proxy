@@ -119,6 +119,7 @@ LINKS = {
     'query_create': '/admin/query/create',
     'query_status_change': '/admin/query/status',
     'query_run': '/admin/query/run',
+	'query_stream': '/admin/query/stream'
     'query_schedule': '/admin/query/schedule',
 
     # Public links

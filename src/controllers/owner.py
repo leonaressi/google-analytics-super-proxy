@@ -373,6 +373,7 @@ app = webapp2.WSGIApplication(
      (co.LINKS['query_create'], CreateQueryHandler),
      (co.LINKS['query_status_change'], ChangeQueryStatusHandler),
      (co.LINKS['query_run'], RunQueryHandler),
+	 (co.LINKS['query_stream'], StreamQueryHandler),
      (co.LINKS['query_schedule'], ScheduleQueryHandler),
      (co.LINKS['owner_auth'], AuthHandler),
      (co.LINKS['owner_activate'], ActivateUserHandler),

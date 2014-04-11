@@ -551,7 +551,21 @@ def SaveApiQueryResponse(api_query, content):
                                              modified=modified)
   db_response.put()
 
+#WIP
+def StreamApiQueryResponseToBigQuery(api_query):
+  """Stream the response data from query directly into the BigQuery
 
+  Args:
+    api_query: The API Query for which the response will be added to
+    content: The content of the API respone to add to the API Query.
+  """
+  db_response = api_query.api_query_responses.get()
+  streamed = datetime.utcnow()
+
+  if db_response:
+    #BIGQUERY.STREAM(db_response.content)
+    db_response.last_streamed = streamed
+  
 def ScheduleAndSaveApiQuery(api_query, **kwargs):
   """Schedules and saves an API Query.
 
